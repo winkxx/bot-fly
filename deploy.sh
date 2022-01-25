@@ -35,17 +35,6 @@ kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
 [env]
-  Api_hash=${API_HASH}
-  Api_id=${API_ID}
-  Aria2_secret=$${ARIA2_SECRET}
-  conf=${CONF}
-  Error_user_info=${ERROR_USER}
-  PORT=${PORT}
-  Rclone_share=${RCLONE_SHARE}
-  Remote=${REMOTE}
-  Telegram_bot_api=${TE_API}
-  Telegram_user_id=${TE_ID}
-  Upload=${UPLOAD}
 [experimental]
   allowed_public_ports = []
   auto_rollback = true
@@ -74,7 +63,17 @@ EOF
 printf '\e[32mCreate app config file success.\n\e[0m'
 printf '\e[33mNext, set app secrets and regions.\n\e[0m'
 
-flyctl secrets set UUID="${UUID}"
+#flyctl secrets set UUID="${UUID}"
+flyctl regions set Api_hash=${API_HASH}
+flyctl regions set Api_id=${API_ID}
+flyctl regions set Aria2_secret=${ARIA2_SECRET}
+flyctl regions set conf=${CONF}
+flyctl regions set Error_user_info=${ERROR_USER}
+flyctl regions set PORT=${PORT}
+flyctl regions set Rclone_share=${RCLONE_SHARE}
+flyctl regions set Telegram_bot_api=${TE_API}
+flyctl regions set Telegram_user_id=${TE_ID}
+flyctl regions set Upload=${UPLOAD}
 flyctl regions set ${REGION}
 printf '\e[32mApp secrets and regions set success. Next, deploy the app.\n\e[0m'
 flyctl deploy --detach
